@@ -288,8 +288,8 @@ int main() {
         }
         tStart = clock();
         switch (j) {
-            //case 0: S1.myCountSort(arr);break;
-            //case 1: S1.myHeapSort(arr);break;
+            case 0: S1.myCountSort(arr);break;
+            case 1: S1.myHeapSort(arr);break;
             case 2: S1.myQuickSort(arr);break;
             case 3: S1.myRadixSort(arr);break;
             case 4: S1.myMergeSort(arr);break;
@@ -300,8 +300,8 @@ int main() {
         tEnd = clock();
         total_t = (double)(tEnd - tStart) / CLOCKS_PER_SEC;
         switch (j) {
-            //case 0:cout << "myCountSort time = " << total_t << "s" << endl; break;  
-            //case 1:cout << "myHeapSort time = " << total_t << "s" << endl;  break; 
+            case 0:cout << "myCountSort time = " << total_t << "s" << endl; break;  
+            case 1:cout << "myHeapSort time = " << total_t << "s" << endl;  break; 
             case 2:cout << "myQuickSort time = " << total_t << "s" << endl; break;  
             case 3:cout << "myRadixSort time = " << total_t << "s" << endl; break;  
             case 4:cout << "myMergeSort time = " << total_t << "s" << endl; break;  
