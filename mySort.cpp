@@ -167,8 +167,8 @@ public:
  
 
 
-    void myCountSort(vector<int> &arr) {                    
-        vector<int>cnt(arr.size());              
+    void myCountSort(vector<T> &arr) {                    
+        vector<int>cnt(INT16_MAX);              
         //vecotr<T>::iterator it = arr.begin();         
         for(int val : arr) {
             cnt[val]++;
@@ -201,7 +201,7 @@ public:
     //-----------------RadixSort_test---------------//   
 
     int SearchMaxBit(vector<T> &arr) {
-        int max1 = INT_MIN;
+        T max1 = INT_MIN;
         for(int i = 0; i < arr.size(); i++) {
             max1 = max(max1, arr[i]); 
         }
@@ -222,14 +222,14 @@ public:
         for(int i = 0; i < MaxBit; i++) {
             cnt.assign(10,0);
             for(int j = 0; j < lenth; j++) {
-                k = (arr[j] / index) % 10;
+                k = (int)(arr[j] / index) % 10;
                 cnt[k]++;
             }
             for(int i = 1; i < 10; i++) {
                 cnt[i] = cnt[i] + cnt[i - 1];
             }
             for(int j = lenth - 1; j >=0; j--) {
-                k = (arr[j] / index) % 10;
+                k = (int)(arr[j] / index) % 10;
                 temp[cnt[k] - 1] = arr[j];
                 cnt[k]--;
             }
@@ -273,38 +273,40 @@ public:
     //-------------------****-------------------//
     //-------------------****-------------------//
 };
+#define arrsize 1000000
 
 int main() {
     Sort<int> S1;
     clock_t tStart, tEnd;
     double total_t;
-    vector<int> int1(1000000);
+    vector<int> arr(arrsize);
+    cout << "The size of arr = " << arrsize << endl;
     for(int j = 0; j < 7; j++) {
         srand(time(0));
-        for(int i = 0; i < 1000000; i++) {
-            int1[i] = (rand() % INT_MAX);
+        for(int i = 0; i < arrsize; i++) {
+            arr[i] = (int)(rand() % INT8_MAX) ;//+ (double)(rand() % INT16_MAX)/100000 ;
         }
         tStart = clock();
         switch (j) {
-            case 0: S1.myCountSort(int1);break;
-            case 1: S1.myHeapSort(int1);break;
-            case 2: S1.myQuickSort(int1);break;
-            case 3: S1.myRadixSort(int1);break;
-            case 4: S1.myMergeSort(int1);break;
-            case 5: S1.myInsertSort(int1);break;
+            //case 0: S1.myCountSort(arr);break;
+            //case 1: S1.myHeapSort(arr);break;
+            case 2: S1.myQuickSort(arr);break;
+            case 3: S1.myRadixSort(arr);break;
+            case 4: S1.myMergeSort(arr);break;
+            case 5: S1.myInsertSort(arr);break;
             //case 6: S1.myBucketSort(int1);]break;
             default:break;
         }
         tEnd = clock();
         total_t = (double)(tEnd - tStart) / CLOCKS_PER_SEC;
         switch (j) {
-            case 0:cout << "myCountSort time = " << total_t << "s" << endl; break;  
-            case 1:cout << "myHeapSort time = " << total_t << "s" << endl;  break; 
+            //case 0:cout << "myCountSort time = " << total_t << "s" << endl; break;  
+            //case 1:cout << "myHeapSort time = " << total_t << "s" << endl;  break; 
             case 2:cout << "myQuickSort time = " << total_t << "s" << endl; break;  
             case 3:cout << "myRadixSort time = " << total_t << "s" << endl; break;  
             case 4:cout << "myMergeSort time = " << total_t << "s" << endl; break;  
             case 5:cout << "myInsertSort time = " << total_t << "s" << endl;break;       
-            case 6:cout << "myBucketSort time = " << total_t << "s" << endl; break;         
+            //case 6:cout << "myBucketSort time = " << total_t << "s" << endl; break;         
             default:break;
         }
     }
